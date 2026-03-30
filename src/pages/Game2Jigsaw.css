@@ -259,3 +259,78 @@
     transform: translateX(10px);
   }
 }
+
+/* --- ปรับปรุง Responsive สำหรับ Game 2 --- */
+@media (max-width: 900px) {
+  .jigsaw-container {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .hud-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .timer-display {
+    font-size: 28px;
+    width: 100%;
+  }
+
+  .game-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* คลังอะไหล่: ทำให้เลื่อนนิ้วปัดซ้ายขวาได้สะดวกขึ้น */
+  .piece-bin {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    min-height: auto;
+    padding: 10px;
+    border-style: solid;
+    /* ซ่อน Scrollbar สำหรับความสวยงาม */
+    scrollbar-width: none;
+  }
+  .piece-bin::-webkit-scrollbar {
+    display: none;
+  }
+
+  .draggable-piece {
+    min-width: 100px;
+    padding: 10px;
+  }
+
+  .draggable-piece img {
+    width: 35px;
+  }
+
+  /* สำคัญ: รักษาอัตราส่วนของบอร์ดวงจรไว้ */
+  .blueprint-board {
+    width: 100%;
+    order: 1; /* เอาบอร์ดไว้ข้างบน */
+  }
+
+  .piece-bin {
+    order: 2; /* เอาคลังไว้ข้างล่าง */
+  }
+
+  .success-panel-final {
+    padding: 20px;
+  }
+
+  .btn-group {
+    flex-direction: column; /* ปุ่มส่งงานกับเล่นใหม่วางซ้อนกัน */
+    width: 100%;
+  }
+
+  .btn-main,
+  .btn-submit,
+  .btn-retry {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}
