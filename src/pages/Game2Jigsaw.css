@@ -213,24 +213,36 @@
 }
 
 /* Responsive */
+/* เพิ่ม/แก้ไขใน Game2Jigsaw.css */
 @media (max-width: 900px) {
   .game-layout {
-    flex-direction: column;
+    flex-direction: column; /* บอร์ดวงจรอยู่บน คลังอะไหล่อยูล่าง */
+    gap: 20px;
   }
+
+  .blueprint-board {
+    width: 100%;
+    /* บังคับอัตราส่วนไว้เพื่อให้เส้น SVG ไม่เพี้ยน */
+    aspect-ratio: 2 / 1;
+  }
+
   .piece-bin {
     width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
     min-height: auto;
+    flex-direction: row; /* เรียงอะไหล่แนวนอนให้ปัดซ้ายขวาเลือกได้ */
+    overflow-x: auto;
+    padding: 10px;
+    gap: 10px;
   }
+
   .draggable-piece {
-    min-width: 120px;
+    min-width: 100px;
+    flex-shrink: 0;
   }
-  .blueprint-board {
-    order: 1;
-  }
-  .piece-bin {
-    order: 2;
+
+  .timer-display {
+    font-size: 24px;
+    padding: 5px 15px;
   }
 }
 

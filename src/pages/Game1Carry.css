@@ -176,46 +176,37 @@
 /* --- Responsive สำหรับ Game 1 --- */
 @media (max-width: 640px) {
   .game-container {
-    padding: 15px; /* ลด Padding ขอบนอก */
+    padding: 20px 15px;
   }
 
   .hud-header {
-    flex-direction: column; /* วางหัวข้อกับตัวจับเวลาซ้อนกัน */
+    flex-direction: column; /* วางเวลาไว้ข้างล่างสถานะ */
     gap: 15px;
+    align-items: stretch;
     text-align: center;
   }
 
   .timer-display {
-    font-size: 24px; /* ลดขนาดตัวเลขจับเวลา */
-    padding: 8px 15px;
+    font-size: 28px; /* ลดขนาดตัวเลขลง */
     width: 100%;
+    order: 2;
   }
 
-  /* ทำให้ตารางเลื่อนซ้ายขวาได้ถ้าหน้าจอเล็กเกินไป */
+  /* ทำให้ตารางเลื่อนซ้ายขวาได้ ไม่ให้มันบีบจนตัวหนังสือซ้อนกัน */
   .matrix-table {
     display: block;
     overflow-x: auto;
-    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .matrix-table td {
-    padding: 12px;
-    font-size: 16px;
-  }
-
-  /* ปรับแผง Calibrator ให้วางซ้อนกันเป็นแนวตั้ง */
   .calibrator-panel {
-    flex-direction: column;
+    flex-direction: column; /* ปุ่ม A, B วางแนวตั้งซ้อนกัน */
     gap: 15px;
   }
 
-  .signal-card {
-    padding: 15px;
-  }
-
   .btn-signal {
-    padding: 12px;
     font-size: 18px;
+    padding: 12px;
   }
 
   .btn-execute {

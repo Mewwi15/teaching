@@ -204,20 +204,46 @@ body {
   align-items: center;
 }
 
-/* Responsive */
+/* --- ปรับปรุง Responsive ใน index.css --- */
 @media (max-width: 768px) {
+  .app-container {
+    flex-direction: column; /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
+  }
+
   .sidebar {
-    display: none;
-  } /* ซ่อน Sidebar บนมือถือ (ต้องทำปุ่ม Hamburger เพิ่มทีหลัง) */
+    display: none; /* ซ่อน Sidebar ไปก่อนในมือถือ เพื่อคืนพื้นที่ให้หน้าจอ */
+    /* หรือถ้าอยากให้โชว์เป็นแถบด้านบน ให้เปลี่ยนเป็น:
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 0;
+    */
+  }
+
+  .main-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   .navbar {
+    padding: 15px;
     flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
   }
+
+  .nav-title {
+    font-size: 18px; /* ลดขนาดหัวข้อ */
+  }
+
+  .nav-profile {
+    width: 100%;
+    justify-content: center;
+  }
+
   .content-area {
-    padding: 0 15px 15px 15px;
-  }
-  .sop-builder {
-    flex-direction: column;
+    padding: 15px; /* ลด Padding ขอบข้าง */
   }
 }
