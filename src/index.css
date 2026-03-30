@@ -1,0 +1,223 @@
+/* src/index.css */
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap");
+
+:root {
+  --bg-main: #f4f7fe;
+  --bg-card: #ffffff;
+  --text-main: #2b3674;
+  --text-muted: #a3aed1;
+  --primary: #4318ff;
+  --primary-hover: #3311db;
+  --success: #01b574;
+  --danger: #ee5d50;
+  --border-radius: 20px;
+  --shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Kanit", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* --- Layout Components --- */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--bg-card);
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-logo {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 40px;
+  text-align: center;
+}
+.sidebar-menu {
+  list-style: none;
+}
+.sidebar-menu li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: 0.3s;
+}
+.sidebar-menu li.active {
+  background-color: var(--primary);
+  color: white;
+}
+.sidebar-menu li:hover:not(.active) {
+  background-color: var(--bg-main);
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: transparent;
+}
+.nav-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 8px 15px;
+  border-radius: 30px;
+  box-shadow: var(--shadow);
+}
+
+.content-area {
+  flex: 1;
+  padding: 0 30px 30px 30px;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* --- Game UI Components --- */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+.card-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--text-main);
+}
+
+.truth-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #e0e5f2;
+}
+.truth-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  font-weight: 500;
+  border-bottom: 1px solid #e0e5f2;
+}
+.truth-table td {
+  padding: 15px;
+  border-bottom: 1px solid #e0e5f2;
+  transition: 0.2s;
+}
+.truth-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Interactive Row Styles */
+.row-interactive {
+  cursor: pointer;
+}
+.row-interactive:hover td {
+  background-color: #f0f4ff;
+}
+.row-correct td {
+  background-color: #e6f8f3 !important;
+  color: var(--success);
+  font-weight: 600;
+}
+.row-wrong td {
+  background-color: #feeceb !important;
+  color: var(--danger);
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+.btn-outline:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.sop-builder {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 16px;
+}
+.choice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  } /* ซ่อน Sidebar บนมือถือ (ต้องทำปุ่ม Hamburger เพิ่มทีหลัง) */
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  .content-area {
+    padding: 0 15px 15px 15px;
+  }
+  .sop-builder {
+    flex-direction: column;
+  }
+}

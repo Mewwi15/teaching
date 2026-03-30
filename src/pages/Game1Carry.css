@@ -1,0 +1,174 @@
+/* src/pages/Game1Carry.css */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Kanit:wght@300;400;500;600&display=swap");
+
+.game-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Kanit", sans-serif;
+  position: relative;
+  color: #1e293b;
+}
+
+/* --- การแจ้งเตือนแบบ Toast --- */
+.notif-toast {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #0f172a;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  animation:
+    slideIn 0.5s ease-out,
+    fadeOut 0.5s ease-in 2.5s forwards;
+  z-index: 100;
+  border-left: 4px solid #2563eb;
+}
+
+/* --- HUD และ ตัวจับเวลา --- */
+.hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.timer-display {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 36px;
+  font-weight: 700;
+  padding: 10px 25px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+}
+
+/* --- ตารางข้อมูล Matrix --- */
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.matrix-table th {
+  background: #0f172a;
+  color: #fff;
+  padding: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.matrix-table td {
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+}
+.matrix-row {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.matrix-row:hover {
+  background: #f1f5f9;
+}
+.matrix-row.locked {
+  background: #eff6ff;
+  border-left: 5px solid #2563eb;
+  color: #2563eb;
+  font-weight: bold;
+}
+
+/* --- แผงปรับจูนสัญญาณ (Phase 2) --- */
+.calibrator-panel {
+  display: flex;
+  gap: 25px;
+  margin-top: 30px;
+}
+.signal-card {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 25px;
+  border-radius: 12px;
+}
+.signal-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+.btn-signal {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  border: 2px solid #cbd5e1;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 22px;
+  font-weight: bold;
+  color: #64748b;
+  transition: all 0.2s;
+}
+.btn-signal:hover {
+  border-color: #94a3b8;
+}
+.btn-signal.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* --- หน้าจอสรุปผลและเข็มเชิดชูเกียรติ --- */
+.badge-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px 0;
+}
+.badge {
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.badge.speed {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fca5a5;
+}
+.badge.perfect {
+  background: #dcfce7;
+  color: #16a34a;
+  border: 1px solid #86efac;
+}
+
+/* --- Animations --- */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
