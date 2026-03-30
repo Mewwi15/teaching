@@ -100,6 +100,47 @@ function Game2Jigsaw() {
     setGameState("ready");
   };
 
+  const [selectedPieceId, setSelectedPieceId] = useState(null);
+
+  const onDropManual = (draggedId, slotId) => {
+    if (draggedId === slotId) {
+      // ✅ วางถูกช่อง
+      setSlots((prev) => ({
+        ...prev,
+        [slotId]: { ...prev[slotId], filled: true },
+      }));
+      setBin((prev) => prev.filter((p) => p.id !== draggedId));
+
+      // เช็คว่าประกอบครบหรือยัง
+      const updated = {
+        ...slots,
+        [slotId]: { ...slots[slotId], filled: true },
+      };
+      if (Object.values(updated).every((s) => s.filled)) {
+        handleCompleteGame();
+      }
+    } else {
+      // ❌ วางผิดช่อง
+      setIsError(true);
+      setErrors((prev) => prev + 1);
+      setTimeMs((p) => p + 2000);
+      setTimeout(() => setIsError(false), 400);
+    }
+  };
+
+  // 3. ฟังก์ชันเมื่อกดเลือกชิ้นส่วน (สำหรับมือถือ)
+  const handlePieceClick = (id) => {
+    setSelectedPieceId(id);
+  };
+
+  // 4. ฟังก์ชันเมื่อกดที่ช่องวาง (สำหรับมือถือ)
+  const handleSlotClick = (slotId) => {
+    if (selectedPieceId) {
+      onDropManual(selectedPieceId, slotId);
+      setSelectedPieceId(null); // วางเสร็จแล้วล้างค่าที่เลือกไว้
+    }
+  };
+
   const handleReady = async () => {
     await updateGameStatus(user.uid, user.displayName, "Jigsaw", "พร้อม!");
     setGameState("waiting_teacher");
@@ -327,10 +368,10 @@ function Game2Jigsaw() {
               <div className="bin-title">คลังอะไหล่</div>
               {bin.map((p) => (
                 <div
-                  key={p.id}
-                  className="draggable-piece"
+                  className={`draggable-piece ${selectedPieceId === p.id ? "selected" : ""}`}
                   draggable
                   onDragStart={(e) => onDragStart(e, p.id)}
+                  onClick={() => handlePieceClick(p.id)} // ✅ รองรับการจิ้ม
                 >
                   <img src={p.img} alt="" />
                   <span className="label-text">{p.name}</span>
@@ -375,7 +416,8 @@ function Game2Jigsaw() {
                     height: s.height,
                   }}
                   onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => !s.filled && onDrop(e, id)}
+                  onDrop={(e) => onDrop(e, id)}
+                  onClick={() => handleSlotClick(id)}
                 >
                   {s.filled ? (
                     <img
